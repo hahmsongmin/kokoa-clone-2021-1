@@ -12,8 +12,7 @@
     top: 0;
 }
 
-@media screen and (max-width:650px) and (min-height: 1000px)
-and (orientation: portrait) {
+@media screen and (max-width:650px) and (orientation: portrait) {
     #no-mobile {
         display: none;
     }
