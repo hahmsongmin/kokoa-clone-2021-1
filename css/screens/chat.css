@@ -1,0 +1,186 @@
+#chat-screen {
+    background-color: #abc1d1;
+    height: 100vh;
+}
+#chat-screen .alt-header {
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    top: 10px;
+    background-color: #abc1d1;
+    z-index: 1;
+}
+#chat-screen .status-bar {
+    top: 0;
+    z-index: 2;
+}
+@keyframes fadeIn { /* 아주 유용한 애니메이션!! */
+    from{
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to{
+        transform: none;
+        opacity: 1;
+    }
+}
+.main-chat {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.8s linear;
+}
+.chat__timestamp {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #92a4b2;
+    padding: 10px;
+    text-align: center;
+    border-radius: 25px;
+    margin-bottom: 25px;
+}
+.message-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.message-row img {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    background-color: white;
+    margin-right: 10px;
+}
+.message__author {
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 10px;
+}
+.message__info {
+    display: flex;
+    align-items:flex-end;
+}
+.message__bubble {
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    border-top-left-radius: 0px;
+    margin-right: 5px;
+}
+.message__time {
+    opacity: 0.7;
+}
+.message-row__content {
+    padding-top: 20px;
+}
+.message-row--own {  /* modifien 속성 */
+    justify-content: flex-end;
+}
+.message-row--own .message__bubble {
+    background-color: var(--staykor);
+    border-top-right-radius: 0px;
+    border-top-left-radius: 15px;
+    margin-right: 0px;
+    margin-left: 5px;
+}
+/* ↓ ,, 첫번째 방법 ,, order(순서) flex순서 변경 !! flex children에게만 적용 */
+/* .message-row--own .message__bubble {   
+    order: 1;
+}
+.message-row--own .message__time {
+    order: 0;
+} */
+.message-row--own .message__info {
+    flex-direction: row-reverse;
+}
+/* ↑ ,, 두번째 방법 ,, 부모속성에 row-reverse 줌 */
+
+.reply {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ↓ input에 width 100%를 주기 위해선, 
+먼저 input 속에 있는 column과 그 옆의 column 모두 width가 있어야 한다.*/ 
+
+.reply__column:first-child {
+    width: 10%;
+}
+.reply__column:last-child {
+    width: 90%;
+    position: relative;
+}
+.reply i {
+    opacity: 0.5;
+}
+.reply input {
+    height: 35px;
+    width: 100%;
+    border: var(--main-border);
+    border-radius: 25px;
+    padding: 5px;
+    padding-left: 10px;
+    margin-right: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.reply__column:last-child > i, 
+.reply__column:last-child button {
+    position: absolute;
+    right: -7px;
+    top: 4px;
+}
+.reply__column:last-child > i {
+    font-size: 30px;
+    right: 45px;
+    top: 9px;
+}
+.reply__column button {
+    background-color: var(--staykor);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.reply__column button:focus,
+.reply__column button:active {
+    outline: none;
+}
+.reply__column button i {
+    opacity: 1;
+    color: white;
+}
+.reply .reply__column:first-child,
+.reply .fa-smile-wink,
+.reply button {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* 중요! reply내부에 어떤 element가 focus가 되어 있다면 */
+/* foucs-within 은 reply 내부에 focus된 element가 있는지 봄 */
+/* focus된 element가 있다면(참) --> ex. fa-smile-wink가 opacity 됨 */
+.reply:focus-within .reply__column:first-child,
+.reply:focus-within .fa-smile-wink,
+.reply:focus-within button {
+    opacity: 0;
+}
+
+.reply input:focus {
+    width: 90vW;
+    transform: translateX(-12%) translateY(-80px);
+}
+
+.reply:focus-within {
+    transform: translateY(80px);
+}

@@ -1,0 +1,9 @@
+.user-component__back-btn {
+    font-size: 50px;
+    color:rgba(0, 0, 0, 0.5);
+    margin-top: 200px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px;
+    position: fixed;
+}
